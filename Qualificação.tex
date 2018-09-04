@@ -355,11 +355,13 @@ Para melhorar a demanda computacional que o fluxo ótico exige, \citeonline{DBLP
 
 Utilizando-se de redes de memória de longo e curto prazo (LSTM), alimentadas pela última camada totalmente conectada por um sistema de duas RNC proposto por \citeonline{NIPS2014_5353}, \citeonline{LI201841} propuseram uma abordagem que é capaz de reconhecer que uma sequência de quadros tem uma ordenação espacial, e com isso ser capaz de reconhecer movimento, além de determinar o local relevante dentro do domínio do espaço-tempo. Em conjunto com a LSTM foi utilizado também um mecanismo de atenção representado por uma rede neural.
 
-As RNA's terão papel fundamental no proposta deste trabalho, uma vez que será atráves dela que receberemos as informações contidas em uma cena de tráfego de veículos
+As RNA's, mais especificamente as RNC's, terão papel fundamental no proposta deste trabalho, uma vez que será através dela que obteremos as informações contidas em uma cena de tráfego de veículos. Essas informações, são a detecção e classificação dos objetos que serão usados como evidência durante a inferência probabilística.
 
 \section {Lógica Probabilística}
 
 Com o objetivo de interpretar faixas de trânsito, \citeonline{10.1007/978-3-642-23232-9_20} apresentaram um modelo de lógica probabilística que interpreta os quadros de um vídeo captado do ponto de vista do veículo, utilizando um sistema de visão de baixo nível baseando-se na transformada de Hough. A interpretação gerada pela saída da classificação é utilizado por uma Rede Lógica de Markov (MLN) para realizar a inferência utilizando-se uma base de conhecimento em lógica de primeira ordem, que contém as regras de trânsito e a representação do domínio. 
+
+Neste trabalho, a representação do domínio de tráfego de veículos e suas regras, necessitam de um método que consiga representar, através de um modelo probabilístico, todas as incertezas e correlações existentes no domínio. Neste sentido, a lógica probabilística utilizando-se da programação em lógica, é apropriada para modelar e interpretar as incertezas presentes no domínio de tráfego de veículos e inferir prováveis situações de risco.
 
 \section {Sistemas de Assistência ao Motorista}
 
@@ -373,6 +375,9 @@ Sistemas de alerta de colisão é uma das funções do ADAS e crítico para segu
 
 Os sistemas ADAS baseados em câmera, como explica \citeonline{8429957}, podem ser utilizados para diversos tipos de detecção como por exemplo: automóveis, pedestres, faixas de rolamento e signais de trânsito. Câmera, como um sensor de aquisição de informações, consegue também capturar informações como: cor, contraste, textura, etc. Com o uso de câmeras para os sistemas ADAS foi possível implementar as mais avançadas técnicas de aprendizado de máquina e computação visual, atualmente os tipos de detecção já mencionadas acima utilizam-se de RNC como ferramenta.
 
+Como os fabricantes automotivos tem cada vez mais incluindo sistemas de auxílio ao motorista, novos sistemas ativos que mitiguem os riscos devem ser desenvolvidos e melhorados Levando-se em conta que cada vez mais os veículos vem equipados com câmeras e os avanços em \textit{hardware} e \textit{software}, a proposta deste trabalho é um sistema ativo de auxílio ao motorista que o alerte em caso de um possível risco de colisão, e está em linha com o que se vem pesquisando em ADAS.
+
+Neste capítulo foram relacionadas pesquisas que serão a base técnica deste trabalho e por representarem o estado da arte das suas respectivas áreas. No próximo capítulo serão apresentadas os fundamentos teóricos referentes à RNA e lógica probabilísticas.
 
 %%%%%%%%
 
@@ -389,27 +394,31 @@ Neste capítulo serão apresentadas as teorias básicas que serão utilizada na 
 
 \section {Redes Neurais Artificiais}
 
-As Redes Neurais Artificias (RNA) são pouco parecidas com as Redes Neurais Biológicas, apenas foram inspiradas por algumas características das funções cerebrais e que ajudaram no desenvolvimento das RNA's. Em um cérebro existe por volta de $10^{11}$ elementos conectados com aproximadamente $10^4$ conexões e que conhecemos por neurônios, que por sua vez são compostos por basicamente três partes conforme figura \ref{fig:figuraneuronio} : Dendritos, Axônio e Sinapse.
+%As Redes Neurais Artificias (RNA) são pouco parecidas com as Redes Neurais Biológicas, apenas foram inspiradas por algumas características das funções cerebrais e que ajudaram no desenvolvimento das RNA's. Em um cérebro existe por volta de $10^{11}$ elementos conectados com aproximadamente $10^4$ conexões e que conhecemos por neurônios, que por sua vez são compostos por basicamente três partes conforme figura \ref{fig:figuraneuronio} : Dendritos, Axônio e Sinapse.
 
-\begin{figure}[h]
-    \centering
-    \caption{Esquema de um Neurônio biológico}
-    \includegraphics[width=\textwidth]{Neuronio}
-    Fonte: \citeonline{Neural_Network_Design}\hfill
-    \label{fig:figuraneuronio}
-\end{figure}
+%% Deletar os dois primeiros paragrafos da seção 3.1 %%
 
-As RNA's não tem a complexidade de células cerebrais, porém existem dois aspectos em que são semelhantes. O primeiro está relacionado aos elementos da rede que são meros dispositivos computacionais e são altamente interconectados, embora os neurônios artificias sejam muito mais simples. O segundo aspecto diz respeito as conexões entre os neurônios que determinam a função da rede. Embora neurônios biológicos sejam muito lentos em comparação com circuitos elétricos ($10^-3$ contra $10^-10$ s), nosso cérebro é capaz de realizar tarefas muito mais rápido que um computador devido à impressionante de estrutura de processamento paralelo existente nas redes neurais biológicas. 
-Nos dias atuais a Inteligência Artificial (IA) tem conseguindo resolver problemas que para os humanos são muito difíceis, problemas esses que são possíveis de serem declarados formalmente através de regras matemáticas, por outro lado as tarefas que se mostram desafiadoras para a IA são relativamente simples para os humanos mas são de difícil formalização, como o reconhecimento de palavras em um som ou particularidades em uma imagem. 
-As soluções que usam RNA permitem que computadores aprendam a partir de experiências e entendimento do mundo em termos de conceito de hierarquia, onde cada conceito é definido através de das suas relações com conceitos mais simples. Ganhando conhecimento através de experiências, RNA's não necessitam de um humano para formalmente especificar todo o conhecimento que um computador necessita, as hierarquias permitem que os computadores aprendam conceitos complicados através de outros mais simples.
 
+%\begin{figure}[h]
+%    \centering
+%    \caption{Esquema de um Neurônio biológico}
+%    \includegraphics[width=\textwidth]{Neuronio}
+%    Fonte: \citeonline{Neural_Network_Design}\hfill
+%    \label{fig:figuraneuronio}
+%\end{figure}
+
+%As RNA's não tem a complexidade de células cerebrais, porém existem dois aspectos em que são semelhantes. O primeiro está relacionado aos elementos da rede que são meros dispositivos computacionais e são altamente interconectados, embora os neurônios artificias sejam muito mais simples. O segundo aspecto diz respeito as conexões entre os neurônios que determinam a função da rede. Embora neurônios biológicos sejam muito lentos em comparação com circuitos elétricos ($10^-3$ contra $10^-10$ s), nosso cérebro é capaz de realizar tarefas muito mais rápido que um computador devido à impressionante de estrutura de processamento paralelo existente nas redes neurais biológicas. 
+%Nos dias atuais a Inteligência Artificial (IA) tem conseguindo resolver problemas que para os humanos são muito difíceis, problemas esses que são possíveis de serem declarados formalmente através de regras matemáticas, por outro lado as tarefas que se mostram desafiadoras para a IA são relativamente simples para os humanos mas são de difícil formalização, como o reconhecimento de palavras em um som ou particularidades em uma imagem. 
+%As soluções que usam RNA permitem que computadores aprendam a partir de experiências e entendimento do mundo em termos de conceito de hierarquia, onde cada conceito é definido através de das suas relações com conceitos mais simples. Ganhando conhecimento através de experiências, RNA's não necessitam de um humano para formalmente especificar todo o conhecimento que %um computador necessita, as hierarquias permitem que os computadores aprendam conceitos complicados através de outros mais simples.
+
+%%%%%%%
 
 Neste trabalho as RNA serão utilizadas para detectar e segmentar objetos, que pertencentes a uma sequências de quadros como entrada. 
 
 
 A seguir serão apresentado modelos matemáticos simplificados de neurônios artificiais, como formalizados por \citeonline{Neural_Network_Design} e como eles podem ser interconectados e dessa forma possam formar uma arquitetura de rede. 
 
-A notação matemática utilizada utilizará a seguinte notação:
+A notação matemática utilizada utilizará será a seguinte:
 
 \begin{itemize}
  
@@ -438,7 +447,7 @@ Um neurônio de entrada única pode ser visto na figura \ref{fig:Neurônio_geral
 
 
  Os escalares \textit{w} e \textit{b} são parâmetros ajustáveis pela função de transferência que é escolhida pelo responsável pela rede neural, e com isso são ajustados por alguma regra de aprendizagem para que as relações de entrada e saída do neurônio atinjam alguma meta específica.
-As funções de transferências são escolhidas para se satisfazer alguma especificação do problema que o neurônio está tentando resolver. A importância das funções de ativação é que elas trazem um componente não linear para as RNA, o que leva que seja possível que aprendam mais que relações lineares das variáveis, sejam elas dependentes ou independentes. As funções de ativação são responsáveis dentro da RNA por introduzir uma componente de não linearidade ao sistema, o que as diferenciam de um modelo de regressão linear. As três mais usadas serão apresentadas abaixo.
+As funções de transferências são escolhidas para se satisfazer alguma especificação do problema que o neurônio está tentando resolver. A importância das funções de ativação é que elas trazem um componente não linear para as RNA, o que leva que seja possível que aprendam mais que relações lineares das variáveis, sejam elas dependentes ou independentes. As funções de ativação são responsáveis dentro da RNA por introduzir uma componente de não linearidade ao sistema, o que as diferenciam de um modelo de regressão linear. As três funções de ativação mais usadas serão apresentadas abaixo.
 
 \begin{enumerate}
   \item Função Limiar\\
@@ -552,7 +561,7 @@ Cada linha da matriz \textbf{W}, de acordo com a equação \ref{eq:matriz_pond} 
 \subsection {Neurônios de múltiplas camadas} 
 
 Em uma rede com vários neurônios, como visto na figura \ref{fig:Neuronio_multipla_camada}, cada camada tem sua própria matriz de ponderação \textbf{W}, seus próprios vetores de fator de erro \textbf{b} e de entrada \textit{n} e uma saída \textbf{a}. Para definir todos esses elementos de cada camada, um índice sobrescrito foi incluído em cada termo. Uma camada onde a saída é a própria saída da rede é chamado de \textit{camada de saída} todas as outras camadas são denominadas \textit{camadas ocultas}. 
-Redes Neurais multicamadas tem mais capacidade de resolver problemas que as redes simples, como exemplo uma rede de duas camadas tendo uma \textit{log-sigmoide} na primeira camada e uma linear na segunda pode ser treinada para aproximar funções arbitrariamente bem, porém as de camada única não. 
+Redes Neurais multicamadas tem mais capacidade de resolver problemas que as redes simples, como exemplo uma rede de duas camadas tendo uma \textit{log-sigmoide} na primeira camada e uma linear na segunda pode ser treinada para aproximar funções, porém as de camada única não. 
 
 \begin{figure}[H]
     \centering
@@ -767,25 +776,27 @@ A forma mais comum de arquitetura de uma RNA é combinação de algumas camadas 
 
 Uma RNC pode ser usada para gerar na sua saída um objeto estruturado de grande dimensão, ao invés de apenas de fazer a predição de uma classe para tarefas de classificação ou mesmo um valor real para uma atividade de regressão. Normalmente a saída é um tensor \textbf{S}, onde \textbf{$S_{i,j,k}$} é a probabilidade que cada pixel (\textit{j,k}) de uma entrada pertencer a uma classe \textit{i}. Isso permite que o modelo classifique cada pixel em uma imagem e crie uma mascara que permite acompanhar os contornos dos objetos.
 
-\subsection{Regras de aprendizado}
+%%% deletar a seção 3.1.8 (toda ela). Tb está fora de contexto %%%
 
-As regras de aprendizado, em geral são procedimentos que alteram os valores dos fatores de ponderação e erro de uma RNA, esses procedimentos também são chamados de treinamento. Existem três grandes categorias de aprendizado:
+%\subsection{Regras de aprendizado}
 
-\begin{itemize}
-    \item Aprendizado supervisionado: Neste tipo de aprendizado é fornecido uma série de exemplos para as redes com o comportamento que se espera da própria rede, como mostrado na equação \ref{eq:aprendizadosupervisionado}, onde \textbf{$p_q$} é uma entrada da rede e \textbf{$t_q$} é sua correspondente saída correta. Conforme as entradas são aplicadas na entrada da rede as saídas são comparadas com o objetivo, o aprendizado então é utilizado para ajustar os fatores de ponderação e erro com o objetivo de fazer com que as saídas fiquem o mais perto possível do objetivo.
+%As regras de aprendizado, em geral são procedimentos que alteram os valores dos fatores de ponderação e erro de uma RNA, esses procedimentos também são chamados de treinamento. Existem três grandes categorias de aprendizado:
+
+%\begin{itemize}
+%    \item Aprendizado supervisionado: Neste tipo de aprendizado é fornecido uma série de exemplos para as redes com o comportamento que se espera da própria rede, como mostrado na equação \ref{eq:aprendizadosupervisionado}, onde \textbf{$p_q$} é uma entrada da rede e \textbf{$t_q$} é sua correspondente saída correta. Conforme as entradas são aplicadas na entrada da rede as saídas são comparadas com o objetivo, o aprendizado então é utilizado para ajustar os fatores de ponderação e erro com o objetivo de fazer com que as saídas fiquem o mais perto possível do objetivo.
     
-    \begin{equation}
-         \textbf{\[ \left \{ p_1, t_1 \right \}, \left \{ p_2, t_2 \right \}, ..., \left \{ p_Q, t_Q \right \} \]}
-         \label{eq:aprendizadosupervisionado}
-    \end{equation}
+%    \begin{equation}
+%         \textbf{\[ \left \{ p_1, t_1 \right \}, \left \{ p_2, t_2 \right \}, ..., \left \{ p_Q, t_Q \right \} \]}
+%         \label{eq:aprendizadosupervisionado}
+%    \end{equation}
     
-    Segundo \citeonline{Goodfellow-et-al-2016}, os principais métodos de aprendizado supervisionado são os algoritmos que estimam a distribuição das probabilidades p(t|\textbf{p}) através da estimação da máxima semelhança, regressão linear e máquinas de vetor de suporte entre outros citados.
+%    Segundo \citeonline{Goodfellow-et-al-2016}, os principais métodos de aprendizado supervisionado são os algoritmos que estimam a distribuição das probabilidades p(t|\textbf{p}) através da estimação da máxima semelhança, regressão linear e máquinas de vetor de suporte entre outros citados.
     
-    \item Aprendizado por reforço: É similar ao aprendizado supervisionado, porém ao invés de utilizar uma saída correta para para cada entrada da rede, o algoritmo apenas devolve uma nota, e esta nota é a performance da rede quando submetidas a uma sequência de entradas. Atualmente este tipo de solução é pouco utilizada de acordo com \citeonline{Neural_Network_Design} .
+%    \item Aprendizado por reforço: É similar ao aprendizado supervisionado, porém ao invés de utilizar uma saída correta para para cada entrada da rede, o algoritmo apenas devolve uma nota, e esta nota é a performance da rede quando submetidas a uma sequência de entradas. Atualmente este tipo de solução é pouco utilizada de acordo com \citeonline{Neural_Network_Design} .
     
-    \item Aprendizado não supervisionado: Os pesos e os erros são modificados de acordo apenas com as entradas da rede, não existe um valor de saída disponível, os algoritmos de aprendizado não supervisionado segundo \citeonline{Goodfellow-et-al-2016} agrupam as entradas através de exemplos similares e também através da distribuição de probabilidades da base de dados.
+%    \item Aprendizado não supervisionado: Os pesos e os erros são modificados de acordo apenas com as entradas da rede, não existe um valor de saída disponível, os algoritmos de aprendizado não supervisionado segundo \citeonline{Goodfellow-et-al-2016} agrupam as entradas através de exemplos similares e também através da distribuição de probabilidades da base de dados.
     
-\end{itemize}
+%\end{itemize}
 
 
 
@@ -807,7 +818,7 @@ As regras de aprendizado, em geral são procedimentos que alteram os valores dos
 
 \newpage
 \section {Programação em Lógica}
- O modelamento e o raciocínio sobre dados relacionais, como explicado em \citeonline{10.1007/978-3-319-23461-8_37} pode ser feito através de uma paradigma de programação, a Programação em Lógica (PL). Programas lógicos são uma coletânea de afirmações que são verdadeira dado um domínio. Apesar de muitas aplicações aprendizado de máquina utilizarem-se de ferramentas de PL, a necessidade de raciocínio mais eficiente para tratar incertezas levou ao desenvolvimento de formalismo mais profundo como a Programação em Lógica Probabilística (PLP). PLP vai além da lógica pura onde uma afirmação deve ser verdadeira ou falsa, e considera que uma afirmação pode ser incerta e determina uma probabilidade a ela.
+ O modelamento e o raciocínio sobre dados relacionais, como explicado em \citeonline{10.1007/978-3-319-23461-8_37} pode ser feito através de uma paradigma de programação, a Programação em Lógica (PL). Programas lógicos são uma coletânea de afirmações que são verdadeira dado um domínio. Apesar de muitas aplicações aprendizado de máquina utilizarem-se de ferramentas de PL, a necessidade de raciocínio mais eficiente para tratar incertezas levou ao desenvolvimento de formalismo como a Programação em Lógica Probabilística (PLP). PLP vai além da lógica pura onde uma afirmação deve ser verdadeira ou falsa, e considera que uma afirmação pode ser incerta e determina uma probabilidade a ela.
 
 
 \subsection{ProbLog}
@@ -846,7 +857,7 @@ Um átomo que se unifica com fato probabilístico é chamado de \textit{átomo p
 
 \{$e(a, b), e(a, c), e(b, c)$\}.\newline
 
-\{$p(a, b) p(a, c), p(b, c), P(a, c)$\}.\newline
+\{$p(a, b), p(a, c), p(b, c), P(a, c)$\}.\newline
 
 Além dos fatos probabilísticos a linguagem utilizado pelo sistema \textit{ProbLog2}, também suporta fatos probabilísticos intencionais, que são utilizados para compactar um conjunto de fatos probabilísticos, a seguinte forma é utilizada: $P :: f(X_1,...,X_n):- Corpo.$, onde o corpo é a conjunção de literais e não incluem outros fatos probabilísticos. a probabilidade $P$ pode ser um número ou ainda uma variável que unifica com um número quando o corpo é provado, as variáveis $X_1$ até $X_n$ são instanciadas quando o corpo é provado.
 
@@ -867,7 +878,7 @@ $0.3::nó(a, d)$
 
 \subsubsection{Semântica}
 
-Todo fato probabilístico de um programa de \textit{ProbLog} é um variável randômica binária e que pode ser verdadeiro ou falso, além disso a escolha do valor verdade de uma átomo probabilístico é chamado de \textit{escolha atômica}, a escolha atômica de todas as probabilidades é a \textit{escolha total}. Para \textit{n} fatos probabilísticos, existem $2^n$ escolhas totais e cada escolha forma um único modelo de programa em ProbLog e é chamado de \textit{possíveis mundos}. Dado que átomos probabilísticos são considerados variáveis independentes e randômicas, é possível determinar a probabilidade de um possível mundo, como o produto das probabilidades associadas com as escolhas atômicas. 
+Todo fato probabilístico de um programa de \textit{ProbLog} é um variável aleatória binária e que pode ser verdadeiro ou falso, além disso a escolha do valor verdade de uma átomo probabilístico é chamado de \textit{escolha atômica}, a escolha atômica de todas as probabilidades é a \textit{escolha total}. Para \textit{n} fatos probabilísticos, existem $2^n$ escolhas totais e cada escolha forma um único modelo de programa em ProbLog e é chamado de \textit{mundos possíveis}. Dado que átomos probabilísticos são considerados variáveis independentes e randômicas, é possível determinar a probabilidade de um possível mundo, como o produto das probabilidades associadas com as escolhas atômicas. 
 
 Sendo $Ω = {ω_1, .., ω_N }$ um conjunto de mundos possíveis em um programa escrito em ProbLog, onde $N=2^n$, sendo que $n$ é o número de átomos probabilísticos. Uma vez que apenas átomos probabilísticos tenham probabilidades, um  único mundo possível pode ser mostrado como uma tupla $(w_i^+, w_i^-)$, onde $w_i^+$ é o conjunto de átomos probabilísticos em $w_i$ que são verdadeiros e $w_i^-$ são falsos.
 
@@ -931,6 +942,8 @@ A linguagem \textit{ProbLog} realiza os seguintes tipos de inferência:
 \end{itemize} 
 
 Programas em \textit{Problog} podem aprender parâmetros dado parciais interpretações do próprio programa.  Uma interpretação parcial é um conjunto de átomos com seus respectivos valores observados. Para um dado programa em \textit{ProbLog} que contenha um conjunto de fatos probabilísticos com valores das probabilidades desconhecidos, a terefa de aprendizado através de interpretações, calcula as probabilidades através do método de explicação mais provável dos fatos probabilísticos dado as evidência de alguns átomos. Este tipo de aprendizagem também utiliza inferência condicional para atualizar as probabilidades dos fatos probabilísticos iniciais até que sua convergência.
+
+
 
 
 %\subsubsection{Funções do programa}
@@ -1053,7 +1066,7 @@ A seguir estão descritas as principais atividades que serão realizadas para im
 
  \item Atividade 2: Adicionalmente ao pré-treino na base da ILSVRC a RNC será treinada com bases relacionadas a automóveis e tráfego de veículos.\newline
  A base \textit{cityscape}, proposta por \citeonline{DBLP:journals/corr/CordtsORREBFRS16}, é uma base de dados de sequências de vídeos capturados em 50 diferentes cidades, conta com 5.000 imagens com anotações de alta qualidade à nível de pixel. Conta também com outras 20.000 imagens com anotações menos detalhadas e focada para trabalhos de direção autônoma em ambientes urbanos, contém ainda uma alta gama de cenas complexas em vias urbanas. Os vídeos capturados para \textit{cityscape} utilizaram-se de câmeras stereo e portanto possuem também a informação de distância.\newline
- As Bases Kitti desenvolvidas por, \citeonline{Fritsch2013ITSC} e \citeonline{Geiger2012CVPR}, possuem anotações de mais de 80.000 imagens anotadas tanto para objetos relacionados ao transito quanto específicos para estradas.\newline
+ As Bases Kitti desenvolvidas por, \citeonline{Fritsch2013ITSC} e \citeonline{Geiger2012CVPR}, possuem anotações de mais de 80.000 imagens tanto para objetos relacionados ao transito quanto específicos para estradas.\newline
  A base de dados da CVRR \citeonline{CVRR_vehicle_detection} e \citeonline{CVRR_sign_detection} contém anotações sobre placas e sinalização de trânsito, são mais de 7.000 anotações em mais de 6.000 imagens.
  
  \item Atividade 3: Criação e determinação de uma base de conhecimento de regras contidas entre o artigo 26 até artigo 35 do Código brasileiro de Trânsito, que contém regras de ultrapassagem por automóveis de passeio. Este comportamento é crítico devido, na maioria das vezes, requerer uma ação imediata do condutor para evitar uma situação de perigo, como por exemplo a sua troca de faixa ou a a redução de velocidade do seu veículo. Essa base de conhecimento que conterá os comportamentos citados acima será escrita em linguagem de programação lógica \textit{ProbLog}. 
