@@ -137,7 +137,7 @@
 \titulo{Classificação automática de situações em tráfego de veículos}
 \autor{ARTHUR AMARAL DE OLIVEIRA}
 \local{São Bernardo do Campo}
-\data{21 de Abril, 2018}
+\data{10 de Setembro, 2018}
 \instituicao{%
   CENTRO UNIVERSITÁRIO FEI}
 \tipotrabalho{Relatório técnico}
@@ -312,7 +312,7 @@ Como resposta ao segundo problema, a indústria automotiva tem desenvolvido dive
 
 Segundos estudo da Organização Mundial de Saúde, conforme mostrado em \citeonline{8429957}, 1,25 milhões de mortes ocorre todo ano com acidentes relacionados ao trafego de veículos, e monetariamente isso significa um gasto anual de  US\$ 518 bilhões. Este dados além da crescente demanda por segurança dos motorista, fizeram que os fabricantes de automóveis desenvolver sistemas avançados de auxílio a direção de veículos. 
 
-Para poder representar o contexto de tráfego de veículos as técnicas de Aprendizado de Máquina, mais precisamente as Redes Neurais Artificias (RNA) e em especial Redes Neurais Convolucionais (RNC), tem nos últimos anos obtidos grandes resultados no campo da visão computacional em detectar, classificar e segmentar objetos. Ano após ano os resultados obtidos no desafio de detecção e classificação de objetos proposto pela \textit{ImageNet}, base de dados mais de 14 milhões de imagens \citeonline{imagenet_cvpr09}, mostram os avanços conseguidos pelas RNC's.
+Para poder representar o contexto de tráfego de veículos as técnicas de Aprendizado de Máquina, mais precisamente as Redes Neurais Artificias (RNA) e em especial Redes Neurais Convolucionais (RNC), tem nos últimos anos obtidos grandes resultados no campo da visão computacional em detectar, classificar e segmentar objetos. Ano após ano os resultados obtidos no desafio de detecção e classificação de objetos proposto pela \textit{ImageNet}, base de dados mais de 14 milhões de imagens \citeonline{Deng09imagenet}, mostram os avanços conseguidos pelas RNC's.
 
 Apesar do grande crescimento dos sistemas de Aprendizado de Máquina, as Redes Neurais não conseguem interpretar o contexto como um todo, mas sim mostrar todos os objetos que compõem aquele contexto. A interpretação do contexto e suas incertezas necessitam que existam  regras e relações espaço-temporais. O Raciocínio Probabilístico, utilizando-se regras de Lógica escritas Lógica Probabilística é uma técnica apropriada para modelar este contexto. De acordo com \citeonline{phdthesis_problog}, aplicações que necessitam de um maior formalismo devido ao raciocínio sobre incertezas precisam mais do que apenas lógica, por essa razão uma vasta quantidade de desenvolvimentos foram feitos na área de Programação em Lógica Probabilística. $ProbLog$ é uma ferramenta de Programação de Lógica Probabilística que é uma extensão do $Prolog$, que além de Lógica Booleana pode receber também sentenças em Lógica de Primeira Ordem.
 
@@ -941,9 +941,9 @@ A linguagem \textit{ProbLog} realiza os seguintes tipos de inferência:
     
 \end{itemize} 
 
-Programas em \textit{Problog} podem aprender parâmetros dado parciais interpretações do próprio programa.  Uma interpretação parcial é um conjunto de átomos com seus respectivos valores observados. Para um dado programa em \textit{ProbLog} que contenha um conjunto de fatos probabilísticos com valores das probabilidades desconhecidos, a terefa de aprendizado através de interpretações, calcula as probabilidades através do método de explicação mais provável dos fatos probabilísticos dado as evidência de alguns átomos. Este tipo de aprendizagem também utiliza inferência condicional para atualizar as probabilidades dos fatos probabilísticos iniciais até que sua convergência.
+Programas em \textit{Problog} podem aprender parâmetros dado parciais interpretações do próprio programa. Uma interpretação parcial é um conjunto de átomos com seus respectivos valores observados. Para um dado programa em \textit{ProbLog} que contenha um conjunto de fatos probabilísticos com valores das probabilidades desconhecidos, a tarefa de aprendizado através de interpretações, calcula as probabilidades através do método de explicação mais provável dos fatos probabilísticos dado as evidência de alguns átomos. Este tipo de aprendizagem também utiliza inferência condicional para atualizar as probabilidades dos fatos probabilísticos iniciais até que exista convergência.
 
-
+Neste capítulo foram apresentadas as teorias de Redes Neurais e Lógica Probabilística que serão necessárias para a base da proposta deste trabalho. No próximo capítulo será apresentada a proposta deste trabalho, e mostrará com mais profundidade como serão utilizadas as Redes Neurais e a Lógica probabilística como ferramentas para a criação de um sistema de auxílio ao motorista, com o objetivo de classificar automaticamente o risco de colisão entre automóveis.
 
 
 %\subsubsection{Funções do programa}
@@ -1069,7 +1069,7 @@ A seguir estão descritas as principais atividades que serão realizadas para im
  As Bases Kitti desenvolvidas por, \citeonline{Fritsch2013ITSC} e \citeonline{Geiger2012CVPR}, possuem anotações de mais de 80.000 imagens tanto para objetos relacionados ao transito quanto específicos para estradas.\newline
  A base de dados da CVRR \citeonline{CVRR_vehicle_detection} e \citeonline{CVRR_sign_detection} contém anotações sobre placas e sinalização de trânsito, são mais de 7.000 anotações em mais de 6.000 imagens.
  
- \item Atividade 3: Criação e determinação de uma base de conhecimento de regras contidas entre o artigo 26 até artigo 35 do Código brasileiro de Trânsito, que contém regras de ultrapassagem por automóveis de passeio. Este comportamento é crítico devido, na maioria das vezes, requerer uma ação imediata do condutor para evitar uma situação de perigo, como por exemplo a sua troca de faixa ou a a redução de velocidade do seu veículo. Essa base de conhecimento que conterá os comportamentos citados acima será escrita em linguagem de programação lógica \textit{ProbLog}. 
+ \item Atividade 3: Criação e determinação de uma base de conhecimento de regras contidas entre o artigo 26 e o artigo 35 do Código brasileiro de Trânsito, que contém regras de ultrapassagem por automóveis de passeio. Este comportamento é crítico devido, na maioria das vezes, requerer uma ação imediata do condutor para evitar uma situação de perigo, como por exemplo a sua troca de faixa ou a a redução de velocidade do seu veículo. Essa base de conhecimento que conterá os comportamentos citados acima será escrita em linguagem de programação lógica \textit{ProbLog}. Todas as probabilidades associadas as regras probabilísticas, contidas na base de conhecimento, serão definidas empiricamente pelo autor do trabalho.  
  
  \item Atividade 4: Realizar testes e ajustes no modelo.
 
