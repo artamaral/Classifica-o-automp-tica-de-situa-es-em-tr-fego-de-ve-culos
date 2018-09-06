@@ -361,6 +361,10 @@ As RNA's, mais especificamente as RNC's, terão papel fundamental no proposta de
 
 Com o objetivo de interpretar faixas de trânsito, \citeonline{10.1007/978-3-642-23232-9_20} apresentaram um modelo de lógica probabilística que interpreta os quadros de um vídeo captado do ponto de vista do veículo, utilizando um sistema de visão de baixo nível baseando-se na transformada de Hough. A interpretação gerada pela saída da classificação é utilizado por uma Rede Lógica de Markov (MLN) para realizar a inferência utilizando-se uma base de conhecimento em lógica de primeira ordem, que contém as regras de trânsito e a representação do domínio. 
 
+O reconhecimento de eventos a partir de vídeos é importe para detecção de anormalidades no seu contexto, técnicas que utilizas programação em lógica indutiva (ILP) conseguem aprender modelos a partir de eventos através de sua ralação de espaço=-tempo.  No trabalho proposto por \citeonline{Dubba2015LearningRE}, é mostrado que para base de dados pequenas ILP consegue ter sucesso na tarefa de aprender o modelo dos eventos. Para base de dados maiores é proposto uma abordagem diferente, é apresentada uma abordagem de aprendizado relacional supervisionado dos evento para gerar o modelo.
+
+\citeonline{Cohn2006} propuseram um sistema de visão cognitiva que combina visão computacional e representação simbólica qualitativa. A representação simbólica dos dados foi feita utilizando-se ILP e permite que a generalização de conceitos como equivalência e ordenamento, que não é possível utilizando-se técnicas estatísticas padrão.  A aprendizagem do modelo, neste trabalho, tem como objetivo capturar o comportamento de eventos contidos em uma sequência de quadros, através da relação espacial qualitativa entre os objeto que fazem parte da cena.
+
 Neste trabalho, a representação do domínio de tráfego de veículos e suas regras, necessitam de um método que consiga representar, através de um modelo probabilístico, todas as incertezas e correlações existentes no domínio. Neste sentido, a lógica probabilística utilizando-se da programação em lógica, é apropriada para modelar e interpretar as incertezas presentes no domínio de tráfego de veículos e inferir prováveis situações de risco.
 
 \section {Sistemas de Assistência ao Motorista}
@@ -584,7 +588,7 @@ As redes neurais recorrentes são redes com realimentação de informações da 
 \end{figure}
 
 
-\subsection{Perceptron}
+\subsection{Redes neurais de alimentação direta}
 
 As técnicas modernas utilizada em aprendizado de máquina são uma estrutura poderosa para o aprendizado supervisionado de acordo com \citeonline{Goodfellow-et-al-2016}. Uma RNA pode aumentar sua complexidade adicionando-se mais camadas ou mesmo mais entradas em cada camada. 
 
@@ -655,6 +659,8 @@ A partir dessas equações podemos escrever o enésimo elemento do vetor de saí
 \end{equation}
 
 As redes neurais de alimentação direta tem sua saída computada diretamente em uma única passada pela rede, não existe retro alimentação. Este tipo de estrutura é comumente utilizada para reconhecimento de padrões, para aproximação de funções que serão usadas em filtros adaptativos e também em controles automáticos.
+
+Na próxima seção será apresentado um caso especial de redes neurais de alimentação direta, chamadas de redes neurais convolucionais. As redes neurais convolucionais atualmente, como mostrado no capítulo 2, tem se mostrado eficiente para o processamento de imagens quando é necessário detectar e classificar objetos em uma imagem.
 
 
 \subsection{Redes Neurais Convolucionais}
