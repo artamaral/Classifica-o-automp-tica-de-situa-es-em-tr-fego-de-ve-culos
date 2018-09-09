@@ -965,11 +965,9 @@ Neste capítulo foram apresentadas as teorias de redes neurais e lógica probabi
 \chapter {Proposta}
 
 \section {Objetivo}
-O objetivo deste trabalho é desenvolver um sistema de assistência ao motorista capaz de classificar automaticamente o risco de colisão durante ultrapassagens em tráfego de veículos, de acordo com o Código Brasileiro de Trânsito. Utilizando-se RNC para analisar uma sequência de quadros captados por uma câmera acoplada a um veículo, a RNC deverá segmentar e classificar, veículos, sinalizações de solo e placas de sinalização dentro de um contexto de tráfego de veículos, a fim de gerar na sua saída um vetor com esses dados, que será utilizado como evidências para um sistema de inferência lógico probabilístico, escrito na linguagem probabilística \textit{ProbLog}. Este sistema de inferência lógico probabilístico também receberá informações de uma base de conhecimento que conterá regras do ultrapassagens previstas no Código Brasileiro de Trânsito. O sistema realizará inferência do risco de colisão desse contexto específico, com o objetivo de gerar um alerta quando o risco inferido for relevante.
-
+O objetivo deste trabalho é desenvolver um sistema de assistência ao motorista, capaz de classificar automaticamente o risco de colisão durante ultrapassagens em tráfego de veículos, de acordo com o Código Brasileiro de Trânsito e utilizando-se de RNCs para analisar uma sequência de quadros captados por uma câmera acoplada a um veículo. A RNC deverá segmentar e classificar veículos, sinalizações de solo e placas de sinalização dentro de um contexto de tráfego de veículos com a finalidade de gerar na sua saída um vetor com esses dados. O vetor será utilizado como evidência para um sistema de inferência lógico probabilístico, escrito na linguagem probabilística \textit{ProbLog}. Esse sistema de inferência lógico probabilístico também receberá informações de uma base de conhecimento que conterá regras de ultrapassagens previstas no Código Brasileiro de Trânsito. O sistema realizará inferências do risco de colisão nesse contexto específico, com o objetivo de gerar um alerta quando o risco inferido for relevante.
 \section {Justificativa}
-Os sistemas avançados de assistência ao motorista (ADAS) vem crescendo nos últimos anos, por duas razões. A primeira é regulatória, nos Estados Unidos e nos países da União Europeia já será obrigatório que em 2020 existam sistemas  de freio de emergência e sistemas de alertas de colisão. A segunda é mercadológica, motoristas estão cada vez mais interessados em carros com esses sistemas de assistência. Atualmente a Euro NCAP, entidade criado pelo Reino Unido e financiada pela União Europeia, e que realiza testes destrutivos em automóveis com o objetivo de avaliar a segurança dos ocupantes, através de um protocolo bem rígido de testes, somente dá nota máxima para veículos que atualmente já possuem sistemas de freio automático que previnam colisão ou que as amenize em caso extremos. A Euro NCAP em suas pesquisas identificou que motoristas, por desatenção ou erro, tem o tempo de reação de frear atrasadas em relação ao tempo necessário para se evitar a colisão. Para atender essa demanda, este trabalho pretende desenvolver um sistemas de assistência ao motorista que se utiliza de RNC em conjunto com um sistema lógico probabilístico para classificação de situações de risco em contextos de tráfego de veículos.
-
+Os sistemas avançados de assistência ao motorista (ADAS) vêm crescendo nos últimos anos por duas razões. A primeira é regulatória; nos Estados Unidos e nos países da União Europeia, já será obrigatório que em 2020 existam sistemas de freio de emergência e sistemas de alerta de colisão. A segunda é mercadológica; os motoristas estão cada vez mais interessados em carros com esses sistemas de assistência. Atualmente, a Euro NCAP, entidade criado pelo Reino Unido e financiada pela União Europeia, realiza testes destrutivos em automóveis com o objetivo de avaliar a segurança dos ocupantes. Emprega um protocolo bem rígido de testes e somente dá nota máxima para veículos que já possuem sistemas de freio automático que previnam colisão ou que as amenize em caso extremos. A Euro NCAP identificou em suas pesquisas que motoristas, por desatenção ou erro, têm o tempo de reação de frear atrasadas em relação ao tempo necessário para evitar a colisão. Para atender a essa demanda, este trabalho pretende desenvolver um sistemas de assistência ao motorista que se utiliza de RNCs em conjunto com um sistema lógico probabilístico para classificação de situações de risco em contextos de tráfego de veículos.
 \section {Método}
 
 O sistema proposto no trabalho é esquematizado na figura \ref{fig:diagrama_de_blocos}.
@@ -982,34 +980,34 @@ O sistema proposto no trabalho é esquematizado na figura \ref{fig:diagrama_de_b
     \label{fig:diagrama_de_blocos}
 \end{figure} 
 
-O funcionamento de cada etapa enumerada na figura \ref{fig:diagrama_de_blocos}, é apresentada abaixo, onde os números de cada item referem-se ao números dos módulos da figura \ref{fig:diagrama_de_blocos}.
+Indica-se abaixo o funcionamento de cada etapa enumerada na figura \ref{fig:diagrama_de_blocos}, onde os números de cada item referem-se aos números dos módulos da figura \ref{fig:diagrama_de_blocos}.
 
 \begin{enumerate}
     
 
-    \item[{(1)}] Uma sequência de quadros de uma situação de tráfego de veículos será usada como entrada para para ser analisada pelo sistema.
+    \item[{(1)}] Uma sequência de quadros de uma situação de tráfego de veículos será usada como entrada para análise pelo sistema.
 
 
-    \item[{(2)}] Uma RNC receberá na sua entrada a sequência de quadros do item (1), o segmentará e classificará informações de sinalização de solo, placas de sinalização e veículos como mostrado na figura \ref{fig:diagrama_de_blocos}.
+    \item[{(2)}] Uma RNC receberá na sua entrada a sequência de quadros do item (1), o segmentará e classificará informações de sinalização de solo, placas de sinalização e veículos, como mostrado na figura \ref{fig:diagrama_de_blocos}.
 
 
-    \item[{(3)}] A saída da RNC conterá as informações segmentadas e classificadas com a probabilidades dos objetos detectados estarem na cena, no exemplo da figura \ref{fig:diagrama_de_blocos}, temos:
+    \item[{(3)}] A saída da RNC conterá as informações segmentadas e classificadas com as probabilidades de os objetos detectados estarem na cena. No exemplo da figura \ref{fig:diagrama_de_blocos}, temos:
         \begin{itemize}
             \item Automóvel.
             \item Sinalização de solo de conversão a direita . 
         \end{itemize}
         
-    \item[{(4)}] A saída classificada em (3) será utilizada como evidências sobre o contexto da cena contidas na sequência de quadros utilizados em (1) como entrada para a RNC, no exemplo da figura \ref{fig:diagrama_de_blocos} temos:
+    \item[{(4)}] A saída classificada em (3) será utilizada como evidência sobre o contexto da cena contida na sequência de quadros utilizados em (1) como entrada para a RNC. No exemplo da figura \ref{fig:diagrama_de_blocos} tem-se:
         \begin{itemize}
             \item Automóvel = \textit{verdadeiro} (v).
             \item Sinalização de solo de conversão a direita  = \textit{v}.
         \end{itemize}    
         
 
-    \item[{(5)}] A Base de conhecimento conterá regras para ultrapassagens, tendo como base o Código Brasileiro de Trânsito e fatos probabilísticos com suas probabilidades definidas \textit{a priori}, através de testes empíricos. No exemplo da figura \ref{fig:diagrama_de_blocos}, temos em $ProbLog$ um exemplo das sentenças do programa que modela o risco da cena:
+    \item[{(5)}] A base de conhecimento conterá regras de ultrapassagem, tendo como base o Código Brasileiro de Trânsito e os fatos com suas probabilidades definidas a  \textit{a priori}. através de testes empíricos. No exemplo da figura \ref{fig:diagrama_de_blocos}, temos em \textit{ProbLog} um exemplo de sentenças do programa que modela o risco da cena:
         \begin{itemize}
         
-            \item Fatos probabilísticos definidos a priori:\newline
+            \item Fatos probabilísticos definidos a \textit{priori}:\newline
             
             - Sinalização de solo de conversão a direita.\newline
             0.50::sinalizacaoSoloD(s).\newline
@@ -1032,17 +1030,17 @@ O funcionamento de cada etapa enumerada na figura \ref{fig:diagrama_de_blocos}, 
             - Existe probabilidade de colisão dada a conversão de automóvel.\newline
             0.75::colisao :- conversao.\newline
 
-           \item O artigo 32 do Código Brasileiro de Trânsito diz: "O condutor não poderá ultrapassar veículos em vias com duplo sentido de direção e pista única, nos trechos em curvas e em aclives sem visibilidade suficiente, nas passagens de nível, nas pontes e viadutos e nas travessias de pedestres, exceto quando houver sinalização permitindo a ultrapassagem.". De acordo com o artigo citado, 3 regras foram propostas que incluem o sentido da via e existência de pista única. Para o exemplo da figura \ref{fig:diagrama_de_blocos}, as outras regras do artigo 32 do Código Brasileiro de Trânsito não foram codificadas em regras probabilísticas. Existe probabilidade de uma ultrapassagem de risco acontecer, e também ser proibida pelo Código Brasileiro de trânsito, dada existência de um automóvel, a sinalização de solo de conversão a direita e as placas de sentido da via, portanto as seguintes regras foram modeladas:\newline
+           \item O artigo 32 do Código Brasileiro de Trânsito diz que: "O condutor não poderá ultrapassar veículos em vias com duplo sentido de direção e pista única, nos trechos em curvas e em aclives sem visibilidade suficiente, nas passagens de nível, nas pontes e viadutos e nas travessias de pedestres, exceto quando houver sinalização permitindo a ultrapassagem.". De acordo com o artigo citado, propuseram-se três regras, que incluem o sentido da via e a existência de pista única. Para o exemplo da figura  \ref{fig:diagrama_de_blocos}, as outras regras do artigo 32 do Código Brasileiro de Trânsito não foram codificadas em regras probabilísticas. Existe probabilidade de uma ultrapassagem de risco acontecer e também de ser proibida pelo Código Brasileiro de Trânsito, tendo-se em vista a existência de um automóvel, a sinalização de solo de conversão à direita e as placas de sentido da via. Portanto, as seguintes regras foram modeladas:\newline
            
-            - Existe probabilidade de uma ultrapassagem de risco acontecer se existir um carro, houver sinalização de solo de conversão a direita e uma placa indicando via de mão dupla.\newline               
+            - Existe probabilidade de acontecer uma ultrapassagem de risco se existir um carro, se não houver placa indicando via de mão dupla nem placa indicando via de mão simples.\newline               
             0.90::risco\_ultrapassagem :-\newline
             carro(X),sinalizacaoSoloD(Y),sinalizacaoPlacaSentidoDuplo(Z).\newline
         
-            - Existe probabilidade de uma ultrapassagem de risco acontecer se existir um carro, se não houver placa indicando via de mão dupla nem placa indicando via de mão simples.\newline
+            - Existe probabilidade de acontecer uma ultrapassagem de risco se existir um carro, se não houver placa indicando via de mão dupla nem placa indicando via de mão simples..\newline
             0.99::risco\_ultrapassagem:-\newline
             carro(X),sinalizacaoSoloD(Y),\textbackslash+sinalizacaoPlacaSentidoDuplo(Z),\newline\textbackslash +sinalizacaoPlacaSentidoUnico(Z).\newline
 
-            - Existe probabilidade de uma ultrapassagem de risco acontecer se existir um carro, se não houver placa indicando via de mão dupla e haver placa indicando via de mão simples.\newline
+            - Existe probabilidade de acontecer uma ultrapassagem de risco se existir um carro, se não houver placa indicando via de mão dupla e houver placa indicando via de mão simples.\newline
             0.10::risco\_ultrapassagem :-\newline
             carro(X),sinalizacaoSoloD(Y),sinalizacaoPlacaSentidoUnico(Z),\newline
             \textbackslash+sinalizacaoPlacaSentidoDuplo(Z).
@@ -1052,7 +1050,7 @@ O funcionamento de cada etapa enumerada na figura \ref{fig:diagrama_de_blocos}, 
      
     As regras acima, válidas para o exemplo da figura \ref{fig:diagrama_de_blocos}, foram verificadas em experimentos preliminares e podem ser executadas em: \url{https://dtai.cs.kuleuven.be/problog/editor.html#task=prob&hash=ef8789119a18fb680cab3aac818ce041}
 
-    \item[{(6)}] Utilizando-se das evidências disponíveis (4), em conjunto com a base de conhecimento (5) é possível calcular o risco da situação do exemplo através de inferência probabilística, e obter a probabilidade de colisão entre os carros na situação proposta no exemplo da figura \ref{fig:diagrama_de_blocos}. 
+    \item[{(6)}] Utilizando-se das evidências disponíveis (4), em conjunto com a base de conhecimento (5) é possível calcular o risco da situação do exemplo através de inferência probabilística, bem como de obter a probabilidade de colisão entre os carros na situação proposta no exemplo da figura \ref{fig:diagrama_de_blocos}. 
 
     \item[{(7)}] A saída final do sistema mostrará as situações de riscos inferidas (6) no contexto, apresentando a probabilidade do risco.  
 
@@ -1065,19 +1063,19 @@ A seguir estão descritas as principais atividades que serão realizadas para im
 \begin{itemize}
    
 
- \item Atividade 1: Será implementada a RNC desenvolvida por \citeonline{DBLP:journals/corr/SzegedyLJSRAEVR14} chamada de \textit{Inception} e pré treinada com a base de dados da competição ILSVRC, esta RNC está disponível no GitHub, disponível em \url{https://github.com/google/inception}. Apesar de existirem novas versões da \textit{Inception}, a primeira versão é a computacionalmente mais leve e por isso foi a escolhida. \textit{Inception} está implementada utilizando-se a estrutura $TensorFlow^{TM}$ em Python. $TensorFlow^{TM}$ é uma estrutura de código aberto para Aprendizado de Máquina, suas bibliotecas fornecem implementação para computação numérica com alta performance, possibilitando utilização de placas de processamento gráfico e também aceleradores gráficos na nuvem. 
+ \item Atividade 1: Será implementada a RNC desenvolvida por \citeonline{DBLP:journals/corr/SzegedyLJSRAEVR14} chamada de \textit{Inception} e pré treinada com a base de dados da competição ILSVRC. Esta RNC está disponível no GitHub em \url{https://github.com/google/inception}. Apesar de existirem novas versões da \textit{Inception}, a primeira versão é a computacionalmente mais leve, por isso foi a escolhida. \textit{Inception} está implementada utilizando-se a estrutura $TensorFlow^{TM}$ em Python. $TensorFlow^{TM}$ é uma estrutura de código aberto para Aprendizado de Máquina. Suas bibliotecas fornecem implementação para computação numérica com alta performance, possibilitando utilização de placas de processamento gráfico e também aceleradores gráficos na nuvem. 
  
 
- \item Atividade 2: Adicionalmente ao pré-treino na base da ILSVRC a RNC será treinada com bases relacionadas a automóveis e tráfego de veículos.\newline
- A base \textit{cityscape}, proposta por \citeonline{DBLP:journals/corr/CordtsORREBFRS16}, é uma base de dados de sequências de vídeos capturados em 50 diferentes cidades, conta com 5.000 imagens com anotações de alta qualidade à nível de pixel. Conta também com outras 20.000 imagens com anotações menos detalhadas e focada para trabalhos de direção autônoma em ambientes urbanos, contém ainda uma alta gama de cenas complexas em vias urbanas. Os vídeos capturados para \textit{cityscape} utilizaram-se de câmeras stereo e portanto possuem também a informação de distância.\newline
+ \item Atividade 2: Adicionalmente ao pré-treino na base da ILSVRC, a RNC será treinada com bases relacionadas a automóveis e tráfego de veículos.\newline
+ A base \textit{cityscape}, proposta por \citeonline{DBLP:journals/corr/CordtsORREBFRS16}, é uma base de dados de sequências de vídeos capturados em 50 diferentes cidades, conta com 5.000 imagens com anotações de alta qualidade à nível de pixel, bem como outras 20.000 imagens com anotações menos detalhadas e focada para trabalhos de direção autônoma em ambientes urbanos, contém ainda uma alta gama de cenas complexas em vias urbanas. Os vídeos capturados para \textit{cityscape} utilizaram-se de câmeras stereo e portanto possuem também a informação de distância.\newline
  As Bases Kitti desenvolvidas por, \citeonline{Fritsch2013ITSC} e \citeonline{Geiger2012CVPR}, possuem anotações de mais de 80.000 imagens tanto para objetos relacionados ao transito quanto específicos para estradas.\newline
- A base de dados da CVRR \citeonline{CVRR_vehicle_detection} e \citeonline{CVRR_sign_detection} contém anotações sobre placas e sinalização de trânsito, são mais de 7.000 anotações em mais de 6.000 imagens.
+ A base de dados da CVRR \citeonline{CVRR_vehicle_detection} e \citeonline{CVRR_sign_detection} contém anotações sobre placas e sinalização de trânsito. São mais de 7.000 anotações em mais de 6.000 imagens.
  
- \item Atividade 3: Criação e determinação de uma base de conhecimento de regras contidas entre o artigo 26 e o artigo 35 do Código brasileiro de Trânsito, que contém regras de ultrapassagem por automóveis de passeio. Este comportamento é crítico devido, na maioria das vezes, requerer uma ação imediata do condutor para evitar uma situação de perigo, como por exemplo a sua troca de faixa ou a a redução de velocidade do seu veículo. Essa base de conhecimento que conterá os comportamentos citados acima será escrita em linguagem de programação lógica \textit{ProbLog}. Todas as probabilidades associadas as regras probabilísticas, contidas na base de conhecimento, serão definidas empiricamente pelo autor do trabalho.  
+ \item Atividade 3: criação e determinação de uma base de conhecimento de regras contidas do artigo 26 até artigo 35 do Código Brasileiro de Trânsito, contendo regras de ultrapassagem por automóveis de passeio. Esse comportamento é crítico por, na maioria das vezes, requerer uma ação imediata do condutor para evitar uma situação de perigo como, por exemplo, a troca de faixa ou a redução de velocidade do veículo. Essa base de conhecimentos que conterá os comportamentos citados acima, será escrita em linguagem de programação lógica \textit{ProbLog}. Todas as probabilidades associadas as regras probabilísticas, e contidas na base de conhecimento, serão definidas empiricamente pelo autor do trabalho.  
  
  \item Atividade 4: Realizar testes e ajustes no modelo.
 
- \item Atividade 5: Realizar a avaliação da proposta através de vídeos da própria base, além da captura de vídeos com situações específicas e controladas para fazer a avaliação através da técnica \textit{leave-one-out} e tabela de confusão, e a partir dos dados serão levantadas curvas de revocação x precisão
+ \item Atividade 5: Realizar a avaliação da proposta através de vídeos da própria base, além da captura de vídeos com situações específicas e controladas para fazer a avaliação através da técnica \textit{leave-one-out} e tabela de confusão. Com os dados serão levantadas curvas de revocação x precisão
 
  \item Atividade 6: Redação da dissertação.
  
@@ -1087,8 +1085,7 @@ A seguir estão descritas as principais atividades que serão realizadas para im
 
 \end{itemize}
 
-O desenvolvimento das atividades propostas acima, seguirão de acordo com o cronograma da figura  
-\ref{fig:cronograma}:
+O desenvolvimento das atividades propostas acima, seguirão de acordo com o cronograma da figura \ref{fig:cronograma}:
 
 
 
